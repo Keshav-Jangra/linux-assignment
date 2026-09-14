@@ -1,0 +1,210 @@
+((((((part 1 = )))))))
+
+cd - to go in project directory
+
+cd Downloads
+cd project
+┌──(kaizen㉿kali)-[~/Downloads/project]
+
+└─$ pwd   
+/home/kaizen/Downloads/project
+
+└─$ ls -la  
+total 48
+drwxr-xr-x 3 kaizen kaizen 4096 Sep 14 10:24 .
+drwxr-xr-x 4 kaizen kaizen 4096 Sep 14 10:12 ..
+-rw-r--r-- 1 kaizen kaizen  529 Sep 14 04:36 application.log
+-rw-r--r-- 1 kaizen kaizen   51 Sep 14 04:36 .config
+-rw-r--r-- 1 kaizen kaizen  202 Sep 14 04:36 debug.log
+-rw-rw-r-- 1 kaizen kaizen    0 Sep 14 10:22 log.txt
+-rw-rw-r-- 1 kaizen kaizen 1024 Sep 14 10:24 .log.txt.swp
+-rw-r--r-- 1 kaizen kaizen  362 Sep 14 04:36 main.c
+-rw-r--r-- 1 kaizen kaizen  121 Sep 14 04:36 notes.txt
+-rw-r--r-- 1 kaizen kaizen  188 Sep 14 04:36 README.txt
+drwxr-xr-x 2 kaizen kaizen 4096 Sep 14 04:36 src
+-rw-r--r-- 1 kaizen kaizen  177 Sep 14 04:36 test.c
+-rw-r--r-- 1 kaizen kaizen  349 Sep 14 04:36 utils.c
+                                                     
+
+└─$ cat README.txt
+Student Project
+
+Project: Linux Shell Practice
+Language: C
+Owner: Training Lab
+
+Files include C source code, notes, and application logs.
+Search keywords for practice: TODO, malloc, ERROR
+
+└─$ head application.log
+2026-09-10 09:15:02 INFO Application started
+2026-09-10 09:16:11 INFO Loading configuration
+2026-09-10 09:17:45 ERROR Failed to connect to database
+2026-09-10 09:18:03 INFO Retrying connection
+2026-09-10 09:18:15 ERROR Connection timeout
+2026-09-10 09:19:21 WARNING Using fallback configuration
+2026-09-10 09:20:10 INFO Service running
+2026-09-10 09:22:42 ERROR Failed to read user data
+2026-09-10 09:23:17 INFO Request completed
+2026-09-10 09:24:08 ERROR Invalid configuration value
+
+
+
+
+pwd - to display the working dir
+ls -la - to show hidden file and in long format 
+cat - to show the readme.txt content
+head - to show the begining of application.log
+
+
+
+(((((part 2 )))))))))
+
+
+ mkdir backup logs
+
+
+└─$ ls
+application.log  backup  debug.log  logs  log.txt  main.c  notes.txt  README.txt  src  test.c  utils.c
+
+
+└─$ mv *.log logs  
+
+└─$ ls logs
+application.log  debug.log
+
+
+
+└─$ mv notes.txt project_notes.txt            
+                                                                                                                   
+└─$ ls     
+backup  logs  log.txt  main.c  project_notes.txt  README.txt  src  test.c  utils.c
+
+
+
+
+((((((( part 4 )))))))
+
+
+
+└─$ ls *.c
+main.c  test.c  utils.c
+
+
+└─$ ls | ls *.c
+main.c  test.c  utils.c
+
+
+┌──(kaizen㉿kali)-[~/Downloads/project]
+└─$ cd logs
+                                                                                                                    
+┌──(kaizen㉿kali)-[~/Downloads/project/logs]
+└─$ grep "ERROR" application.log
+2026-09-10 09:17:45 ERROR Failed to connect to database
+2026-09-10 09:18:15 ERROR Connection timeout
+2026-09-10 09:22:42 ERROR Failed to read user data
+2026-09-10 09:24:08 ERROR Invalid configuration value
+
+
+└─$ cd logs
+                                                                                                                    
+┌──(kaizen㉿kali)-[~/Downloads/project/logs]
+└─$ grep "ERROR" application.log
+2026-09-10 09:17:45 ERROR Failed to connect to database
+2026-09-10 09:18:15 ERROR Connection timeout
+2026-09-10 09:22:42 ERROR Failed to read user data
+2026-09-10 09:24:08 ERROR Invalid configuration value
+
+
+
+└─$ grep "ERROR" application.log | sort > error_report.txt   
+
+└─$ echo "new line added" >> error_report.txt
+
+
+└─$ cat error_report.txt
+2026-09-10 09:17:45 ERROR Failed to connect to database
+2026-09-10 09:18:15 ERROR Connection timeout
+2026-09-10 09:22:42 ERROR Failed to read user data
+2026-09-10 09:24:08 ERROR Invalid configuration value
+new line added
+
+
+
+└─$ wc -l error_report.txt
+5 error_report.txt
+                           
+
+
+
+
+
+
+(((((( part 3 )))))))))
+
+
+└─$ find . -name "*.c"
+./test.c
+./main.c
+./utils.c
+./src/old.c
+./src/helper.c
+
+
+└─$ find . -type d    
+.
+./backup
+./src
+./logs
+
+
+└─$ grep -r "TODO"                                                   
+log.txt:Search keywords for practice: TODO, malloc, ERROR
+README.txt:Search keywords for practice: TODO, malloc, ERROR
+project_notes.txt:TODO: Review memory allocation in utils.c
+project_notes.txt:TODO: Add more test cases
+utils.c:/* TODO: Add input validation */
+src/old.c:/* TODO: Remove this legacy module */
+src/helper.c:/* TODO: Improve helper error reporting */
+
+
+└─$ grep -rn "malloc" *.c       
+main.c:6:    int *values = malloc(n * sizeof(int));
+utils.c:9:    int *arr = malloc(n * sizeof(int));
+
+
+
+(((((((( part 5 ))))))))
+
+
+
+└─$ gcc main.c -o main && ./main                          
+Project started successfully
+
+
+
+((((((( part 6 ))))))))
+
+
+└─$ chmod u+x main  
+
+
+└─$ echo $PATH                               
+/home/kaizen/.local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+
+└─$ which gcc             
+/usr/bin/gcc
+
+
+└─$ name="linux student"
+
+└─$ echo $name
+linux student
+
+
+└─$ echo "Home: $HOME"                       
+Home: /home/kaizen
+
+
+
